@@ -26,7 +26,7 @@ services:
 
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
-    build: 
+    build:
       context: ./graylog/.
     volumes:
       - graylog_journal:/usr/share/graylog/data/journal
@@ -55,27 +55,18 @@ services:
       # GELF UDP
       - 12201:12201/udp
 
-  # Kibana : https://www.elastic.co/guide/en/kibana/6.8/index.html
-  kibana:
-    image: docker.elastic.co/kibana/kibana-oss:6.8.5
-    env_file:
-      - kibana.env
-    depends_on:
-      - elasticsearch
-    ports:
-      - 5601:5601
-  cerebro:
-    image: lmenezes/cerebro
-    ports:
-      - 9001:9000
-    links:
-      - elasticsearch
-    depends_on:
-      - elasticsearch
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100M"
+   cerebro:
+     image: lmenezes/cerebro
+     ports:
+       - 9001:9000
+     links:
+       - elasticsearch
+     depends_on:
+       - elasticsearch
+     logging:
+       driver: "json-file"
+       options:
+         max-size: "100M"
 
   influxdb:
     image: 'influxdb:latest'
