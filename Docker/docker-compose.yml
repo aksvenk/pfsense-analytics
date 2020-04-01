@@ -55,7 +55,7 @@ services:
       # GELF UDP
       - 12201:12201/udp
 
-   cerebro:
+  cerebro:
      image: lmenezes/cerebro
      ports:
        - 9001:9000
